@@ -3,15 +3,26 @@ CREATE DATABASE sequelize_passport;
 
 USE sequelize_passport;
 
-CREATE TABLE userlogin (
-	user_id INT NOT NULL AUTO_INCREMENT,
-    user_name VARCHAR(50) NOT NULL,
+-- CREATE TABLE userlogin (
+-- 	user_id INT NOT NULL AUTO_INCREMENT,
+--     user_name VARCHAR(50) NOT NULL,
+--     password VARCHAR(50) NOT NULL,
+--     email VARCHAR(100) NOT NULL,
+--     PRIMARY KEY (user_id)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE users (
+	id INT NOT NULL AUTO_INCREMENT,
+    firstname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL,
+    username TEXT(50) NOT NULL,
+	email VARCHAR(100) NOT NULL,
     password VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    PRIMARY KEY (user_id)
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-INSERT INTO userlogin(user_name, password, email) VALUES("Test", "Blah", "example@gmail.com");
-INSERT INTO userlogin(user_name, password, email) VALUES("Test", "Blah", "example@gmail.com");
 
-SELECT user_name, email FROM userlogin;
+INSERT INTO users(firstname, lastname, username, email, password) VALUES("john", "john", "john", "john@gmail.com", "john");
+INSERT INTO users(firstname, lastname, username, email, password) VALUES("jane", "jane", "jane", "jane@gmail.com", "jane");
+
+SELECT * FROM users;

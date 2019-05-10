@@ -10,7 +10,7 @@ module.exports = function (passport, user) {
 
     // used to deserialize the user
     passport.deserializeUser(function (id, done) {
-        User.findById(id).then(function (user) {
+        User.findByPk(id).then(function (user) {
             if (user) {
                 done(null, user.get());
             }
@@ -73,20 +73,19 @@ module.exports = function (passport, user) {
         },
 
         function (req, email, password, done) {
-
             var User = user;
             var isValidPassword = function (userpass, password) {
                 return bCrypt.compareSync(password, userpass);
             }
 
             User.findOne({ where: { email: email } }).then(function (user) {
-
                 if (!user) {
                     return done(null, false, { message: 'Email does not exist' });
                 }
                 if (!isValidPassword(user.password, password)) {
                     return done(null, false, { message: 'Incorrect password.' });
                 }
+                
                 var userinfo = user.get();
                 return done(null, userinfo);
 
