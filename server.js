@@ -5,6 +5,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var env = require('dotenv');
 var exphbs = require('express-handlebars');
+var path = require('path');
 var PORT = process.env.PORT || 8080;
 
 // For BodyParser
@@ -21,8 +22,11 @@ app.set('views', './app/views')
 app.engine('hbs', exphbs({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 app.get('/', function (req, res) {
-    res.send('Welcome to Main Page');
+    res.send('Hello!');
 });
+
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static("public"));
 
 // Models
 var models = require("./app/models");
